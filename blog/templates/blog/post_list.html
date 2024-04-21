@@ -1,23 +1,52 @@
+{% extends 'blog/base.html' %}
+
+<!-- {% load static %}
+    
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
+    <link rel="stylesheet" href="{%  static 'css/blog.css' %}">
+
     <title>Vanessa's blog</title>
 </head>
 <body>
-    <header>
-        <h1><a href="/">Django Girls Blog</a></h1>
+    <header class="page-header">
+        <div class="container">
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div>
     </header>
+    <main class="container">
+        <div class="row">
+            <div class="col">
+                <div class="content">
+                    <h2>Recent posts</h2> -->
+                {% block content %}
+                    {% for post in posts %}
+                    
+                        <article class="post">
+                            <aside class="actions">
+                                <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
+                                    {% include './icons/pencil-fill.svg' %}
 
-    {% for post in posts %}
-        <article>
-            <time>{{ post.published_date }}</time>
-            <h2><a href="">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </article>
-    {% endfor %}
+                                </a>
+                            </aside>
+                            <time>{{ post.published_date }}</time>
+                            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </article>
+                    {% endfor %}
+                {% endblock %}
+                <!-- </div>
+            </div>
+        </div>
+    </main> 
     <p>Hi there!</p>
     <p>It works!</p>
 </body>
-</html>
+</html> -->
